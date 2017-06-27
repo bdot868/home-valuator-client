@@ -141,7 +141,7 @@ class App extends Component {
 
         <div>
         {{
-          home: <h1 id="tagname">Home Appraiser!</h1>,
+          home: <h1 id="tagname">Home Valuator!</h1>,
           login: <LogIn onLogin={this._login} />,
           signup: <SignUp onSignup={this._signUp} />,
           profile: <Profile myUser={this.state.currentUser} quotes={listing} onDismissModal={this._clearSearch.bind(this)} estValue={this.state.value}/>,
