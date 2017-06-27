@@ -80,7 +80,8 @@ h4 {
   border: 1px solid black;
 }
 .nav {
-  padding-left: 1003px;
+  /*padding-left: 1003px;*/
+  float: left;
 }
 h1 {
   color: white;
@@ -97,4 +98,48 @@ h1 {
 
 h3 {
   text-decoration: underline;
+}
+@media screen and (max-width:480px){
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-size: 100%;
+    font-family: arial;
+    background: url("http://www.mihomes.com/Images/mktg/promo/161114_ZoneA_Raleigh.jpg");
+    background-size: auto;
+  }
+  i {
+    max-width: 100%;
+  }
+  /*Bottom menu*/
+  .app-header {
+    font-size: 3em;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+  .app-header ul li button {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    list-style: none;
+    width: 20%;
+    padding: 1.6%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    border-bottom: 2px solid black;
+  }
+  .app-header ul li button.selected {
+    opacity: 1;
+    border-bottom: 2px solid red;
+  }
+  .app-header ul li i{
+    max-height: 1.6em;
+    padding-top: 0.15em;
+    color: white;
+  }
 }
