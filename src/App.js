@@ -115,15 +115,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
+        {/* <div className="App-header">
           <h2 id="buster">{!this.state.loggedIn ? 'Log in buster!' : null}</h2>
           <ul className="nav nav-tabs">
 
             {!this.state.loggedIn && (
-              <li><button className="" aria-hidden="true" id="nav-links" name='signup' onClick={this._setView.bind(this)}>Sign Up</button></li>
+              <li><button className="btn" aria-hidden="true" id="nav-links" name='signup' onClick={this._setView.bind(this)}>Sign Up</button></li>
             )}
             {!this.state.loggedIn && (
-              <li><button className="" aria-hidden="true" id="nav-links" name='login' onClick={this._setView.bind(this)}>Log In</button></li>
+              <li><button className="btn" aria-hidden="true" id="nav-links" name='login' onClick={this._setView.bind(this)}>Log In</button></li>
             )}
             {this.state.loggedIn &&(
                 <li><button className="btn" aria-hidden="true" id="nav-links" name='zillow' onClick={this._setView.bind(this)} >Zillow</button></li>
@@ -136,8 +136,33 @@ class App extends Component {
             )}
 
           </ul>
-        </div>
-
+        </div> */}
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <button type="button" className="btn btn-default btn-lg" name="home" onClick={this._setView.bind(this)}>
+                <span className="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </button>
+            </div>
+            <ul className="nav navbar-nav navbar-right">
+              {!this.state.loggedIn && (
+                <li id="nav-link"><a name='signup' onClick={this._setView.bind(this)}>Sign Up</a></li>
+              )}
+              {!this.state.loggedIn && (
+                <li id="nav-link"><a name='login' onClick={this._setView.bind(this)}>Log In</a></li>
+              )}
+              {this.state.loggedIn &&(
+                <li id="nav-link"><a name='zillow' onClick={this._setView.bind(this)}>Zillow</a></li>
+              )}
+              {this.state.loggedIn && (
+                <li id="nav-link"><a name='profile' onClick={this._setView.bind(this)}>Profile</a></li>
+                )}
+              {this.state.loggedIn && (
+                <li id="nav-link"><a name='logout' onClick={this._logOut.bind(this)}>Log Out</a></li>
+              )}
+            </ul>
+          </div>
+        </nav>
 
         <div>
         {{

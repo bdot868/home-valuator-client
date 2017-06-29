@@ -3,25 +3,27 @@
 }
 
 
-.App-header {
-  background-color: #222;
-  height: 55px;
-  padding: 3px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .container {
   margin-top: 100px;
   max-width: 600px;
+}
+
+/*.navbar {
+  border-radius: none;
+}*/
+
+.navbar-header button {
+  background-color: #f8f8f8;
+  border: none;
+}
+
+.navbar-header button span {
+  font-size: 22px;
+}
+
+#nav-link {
+  cursor: pointer;
+  cursor: hand;
 }
 
 .log-in {
@@ -62,7 +64,8 @@ body {
     margin-left: 75px;
     margin-bottom: 20px;
     margin-right: 10px;
-
+    cursor: pointer;
+    cursor: hand;
 }
 span {
   text-decoration: underline;
@@ -75,10 +78,7 @@ h4 {
 #username {
   color: white;
 }
-#nav-links {
-  width: 100px;
-  border: 1px solid black;
-}
+
 .nav {
   /*padding-left: 1003px;*/
   float: right;
