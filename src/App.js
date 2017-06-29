@@ -72,7 +72,7 @@ class App extends Component {
     clientAuth.getLocationInfo(data).then((apiLocationData) => {
 
       console.log(apiLocationData)
-      var mula = parseInt(apiLocationData.data.zestimate)
+      var mula = parseInt(apiLocationData.data.zestimate);
       this.setState({
         dataSetLocation: apiLocationData.data,
         view: 'zillow',
@@ -120,19 +120,19 @@ class App extends Component {
           <ul className="nav nav-tabs">
 
             {!this.state.loggedIn && (
-              <li><button class="fa fa-paper-plane" aria-hidden="true" id="nav-links" name='signup' onClick={this._setView.bind(this)}>Sign Up</button></li>
+              <li><button className="" aria-hidden="true" id="nav-links" name='signup' onClick={this._setView.bind(this)}>Sign Up</button></li>
             )}
             {!this.state.loggedIn && (
-              <li><button class="fa fa-sign-in" aria-hidden="true" id="nav-links" name='login' onClick={this._setView.bind(this)}>Log In</button></li>
+              <li><button className="" aria-hidden="true" id="nav-links" name='login' onClick={this._setView.bind(this)}>Log In</button></li>
             )}
             {this.state.loggedIn &&(
-                <li><button class="fa fa-home" aria-hidden="true" id="nav-links" name='zillow' onClick={this._setView.bind(this)} className="btn">Zillow</button></li>
+                <li><button className="btn" aria-hidden="true" id="nav-links" name='zillow' onClick={this._setView.bind(this)} >Zillow</button></li>
             )}
             {this.state.loggedIn && (
-              <li><button class="fa fa-user" aria-hidden="true" id="nav-links" name="profile" onClick={this._setView.bind(this)} className="btn">Profile page</button></li>
+              <li><button className="btn" aria-hidden="true" id="nav-links" name="profile" onClick={this._setView.bind(this)} >Profile page</button></li>
             )}
             {this.state.loggedIn && (
-              <li><button class="fa fa-sign-out" aria-hidden="true" id="nav-links" onClick={this._logOut.bind(this)} className="btn">Log out</button></li>
+              <li><button className="btn" aria-hidden="true" id="nav-links" onClick={this._logOut.bind(this)} >Log out</button></li>
             )}
 
           </ul>
@@ -141,7 +141,7 @@ class App extends Component {
 
         <div>
         {{
-          home: <h1 id="tagname">Home Valuator!</h1>,
+          home: <Home />,
           login: <LogIn onLogin={this._login} />,
           signup: <SignUp onSignup={this._signUp} />,
           profile: <Profile myUser={this.state.currentUser} quotes={listing} onDismissModal={this._clearSearch.bind(this)} estValue={this.state.value}/>,
@@ -158,6 +158,15 @@ class App extends Component {
 
       </div>
     );
+  }
+}
+
+class Home extends Component {
+
+  render() {
+    return (
+      <h1 id="tagname">Home Valuator!</h1>
+    )
   }
 }
 
