@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import clientAuth from './clientAuth.js'
 import './zillow.css'
-var ReactBootstrap = require('react-bootstrap')
-var Modal = ReactBootstrap.Modal
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// var ReactBootstrap = require('react-bootstrap')
+// var Modal = ReactBootstrap.Modal
 
 class Zillow extends Component {
 
@@ -11,9 +12,9 @@ class Zillow extends Component {
 
     this.state = {
       quotes: null,
-      isModalOpen: false
+      modal: false
     }
-    //this._toggleModal = this._toggleModal.bind(this)
+    this.toggle = this.toggle.bind(this)
   }
 
 
@@ -33,6 +34,8 @@ class Zillow extends Component {
     }
 
     this.props.onSearch(locationData)
+    this.refs.address.value = ''
+    this.refs.citystatezip.value = ''
   }
 
   _addQuote(evt){
@@ -69,6 +72,12 @@ class Zillow extends Component {
     }))
   }
 
+  toggle(){
+    this.setState({
+      modal: false
+    })
+  }
+
   render() {
     var listing = this.props.data
     var num = this.props.money
@@ -89,18 +98,18 @@ class Zillow extends Component {
             <input className="form-control" type='text' placeholder='Ex... New York, NY or 11101' ref='citystatezip' id="zillow" />
           </div>
 
-          <button className="btn" type='submit'>Search</button>
+          <Button color="warning" className="btn">Search</Button>
         </form>
 
         {listing
           ? (
             <div className="static-modal">
-            <Modal show={!!this.props.data} onHide={this.props.onDismissModal}>
-              <Modal.Header closeButton>
-                <Modal.Title id="title">Property Data</Modal.Title>
-              </Modal.Header>
+            <Modal isOpen={!!this.props.data} toggle={this.toggle}>
+              <ModalHeader id="title">
+                Property Data
+              </ModalHeader>
                 {/* <button onClick={() => this.closeModal()}>X</button> */}
-                <Modal.Body>
+                <ModalBody>
                 <div className='listing'>
                   <p><strong>City:</strong> {listing.city}</p>
                   <p><strong>State:</strong> {listing.state}</p>
@@ -116,11 +125,11 @@ class Zillow extends Component {
 
                   <h3>Your home is worth:</h3>
                   <h2 className="amount">${num.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</h2>
-                  <Modal.Footer>
+                  <ModalFooter>
                     <button className="btn btn-danger" id="save" onClick={this._addQuote.bind(this)}>Save Quote</button>
-                  </Modal.Footer>
+                  </ModalFooter>
                 </div>
-                </Modal.Body>
+                </ModalBody>
               </Modal>
             </div>
               )

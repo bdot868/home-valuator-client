@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import './App.css'
 import clientAuth from './clientAuth'
+import Home from './home'
+import Profile from './profile'
+import LogIn from './login'
+import SignUp from './signup'
 import Zillow from './zillow'
-var ReactBootstrap = require('react-bootstrap')
-var Modal = ReactBootstrap.Modal
+
+// import LoadingSpinner from './spinner'
+// var ReactBootstrap = require('react-bootstrap')
+// var Modal = ReactBootstrap.Modal
 
 
 class App extends Component {
@@ -40,12 +46,12 @@ class App extends Component {
 
   _login(credentials) {
     clientAuth.logIn(credentials).then(user => {
-      this.setState({
-        currentUser: user,
-        loggedIn: true,
-        view: 'zillow'
+       this.setState({
+          currentUser: user,
+          loggedIn: true,
+          view: 'zillow'
+        })
       })
-    })
   }
 
   _logOut() {
@@ -61,6 +67,7 @@ class App extends Component {
 
   _setView(evt) {
     evt.preventDefault()
+    console.log(evt.target)
     const view = evt.target.name
     this.setState({
       view: view
@@ -69,16 +76,17 @@ class App extends Component {
 
   _zillowData(data) {
 
-    clientAuth.getLocationInfo(data).then((apiLocationData) => {
+    clientAuth.getLocationInfo(data)
+      .then((apiLocationData) => {
 
-      console.log(apiLocationData)
-      var mula = parseInt(apiLocationData.data.zestimate);
-      this.setState({
-        dataSetLocation: apiLocationData.data,
-        view: 'zillow',
-        value: mula
-      })
-    });
+        console.log(apiLocationData)
+        var mula = parseInt(apiLocationData.data.zestimate, 10);
+        this.setState({
+          dataSetLocation: apiLocationData.data,
+          view: apiLocationData ? 'zillow' : 'spinner',
+          value: mula
+        })
+      });
 
   }
 
@@ -88,26 +96,13 @@ class App extends Component {
     })
   }
 
-  // _addQuote(evt){
-  //   evt.preventDefault()
-  //   const newQuote = {
-  //     street: this.state.dataSetLocation.address.street,
-  //     city: this.state.dataSetLocation.address.city,
-  //     state: this.state.dataSetLocation.address.state,
-  //     zestimate: this.state.dataSetLocation.zestimate.amount['$t'],
-  //     useCode: this.state.dataSetLocation.useCode,
-  //   }
-  //   console.log(newQuote)
-  //   clientAuth.addQuote(newQuote).then(res => {
-  //     console.log(res.data)
-  //     this.setState({
-  //       dataSetLocation: [
-  //         ...this.state.dataSetLocation,
-  //         res.data
-  //       ]
-  //     })
-  //   })
-  // }
+  _home() {
+    this.setState({
+      view: 'home'
+    })
+  }
+
+
 
   render() {
     var listing = this.state.dataSetLocation
@@ -115,58 +110,38 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <div className="App-header">
-          <h2 id="buster">{!this.state.loggedIn ? 'Log in buster!' : null}</h2>
-          <ul className="nav nav-tabs">
 
-            {!this.state.loggedIn && (
-              <li><button className="btn" aria-hidden="true" id="nav-links" name='signup' onClick={this._setView.bind(this)}>Sign Up</button></li>
-            )}
-            {!this.state.loggedIn && (
-              <li><button className="btn" aria-hidden="true" id="nav-links" name='login' onClick={this._setView.bind(this)}>Log In</button></li>
-            )}
-            {this.state.loggedIn &&(
-                <li><button className="btn" aria-hidden="true" id="nav-links" name='zillow' onClick={this._setView.bind(this)} >Zillow</button></li>
-            )}
-            {this.state.loggedIn && (
-              <li><button className="btn" aria-hidden="true" id="nav-links" name="profile" onClick={this._setView.bind(this)} >Profile page</button></li>
-            )}
-            {this.state.loggedIn && (
-              <li><button className="btn" aria-hidden="true" id="nav-links" onClick={this._logOut.bind(this)} >Log out</button></li>
-            )}
+        <header>
+          <div className="logo">
+            <a name="home" onClick={this._home.bind(this)}>Home Valuator</a>
+          </div>
 
-          </ul>
-        </div> */}
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="btn btn-default btn-lg" name="home" onClick={this._setView.bind(this)}>
-                <span className="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </button>
-            </div>
-            <ul className="nav navbar-nav navbar-right">
+          <nav>
+            <ul className="links">
               {!this.state.loggedIn && (
-                <li id="nav-link"><a name='signup' onClick={this._setView.bind(this)}>Sign Up</a></li>
+                <li className="navi-link"><a name='signup' onClick={this._setView.bind(this)}>Sign Up</a></li>
               )}
               {!this.state.loggedIn && (
-                <li id="nav-link"><a name='login' onClick={this._setView.bind(this)}>Log In</a></li>
+                <li className="navi-link"><a name='login' onClick={this._setView.bind(this)}>Log In</a></li>
               )}
               {this.state.loggedIn &&(
-                <li id="nav-link"><a name='zillow' onClick={this._setView.bind(this)}>Zillow</a></li>
+                <li className="navi-link"><a name='zillow' onClick={this._setView.bind(this)}>Zillow</a></li>
               )}
               {this.state.loggedIn && (
-                <li id="nav-link"><a name='profile' onClick={this._setView.bind(this)}>Profile</a></li>
+                <li className="navi-link"><a name='profile' onClick={this._setView.bind(this)}>Profile</a></li>
                 )}
               {this.state.loggedIn && (
-                <li id="nav-link"><a name='logout' onClick={this._logOut.bind(this)}>Log Out</a></li>
+                <li className="navi-link"><a name='logout' onClick={this._logOut.bind(this)}>Log Out</a></li>
               )}
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </header>
 
-        <div>
+
+        <div className="page">
         {{
           home: <Home />,
+          // spinner: <LoadingSpinner />,
           login: <LogIn onLogin={this._login} />,
           signup: <SignUp onSignup={this._signUp} />,
           profile: <Profile myUser={this.state.currentUser} quotes={listing} onDismissModal={this._clearSearch.bind(this)} estValue={this.state.value}/>,
@@ -180,211 +155,23 @@ class App extends Component {
           )
         }[this.state.view]}
       </div>
+      <section>
+        <div id="zestimate-info">
+          <h4>What is a Zestimate®?</h4>
+          <p>The Zestimate home valuation is Zillow's estimated market value for a home, computed using a proprietary formula. It is a starting point in determining a home's value and is not an official appraisal. The Zestimate is calculated from public and user-submitted data. Updating your home facts can help make your Zestimate more accurate. Learn more</p>
 
+          <h4>Other ways to find out the value of your home</h4>
+          <p>Zestimates are intended as a useful starting point to help you determine an independent and unbiased assessment of what your home might be worth in today's market. Comparing your home to recently sold properties can also help you understand what your home is worth. Additionally, your real estate agent or appraiser will physically inspect the home and take into account special features, location and market conditions.</p>
+        </div>
+      </section>
+        <footer>
+          <p>Copyright 2017 Home Valuator</p>
+        </footer>
       </div>
     );
   }
 }
 
-class Home extends Component {
 
-  render() {
-    return (
-      <h1 id="tagname">Home Valuator!</h1>
-    )
-  }
-}
-
-class SignUp extends Component {
-  _handleSignup(evt) {
-    evt.preventDefault()
-    const newUser = {
-      name: this.refs.name.value,
-      email: this.refs.email.value,
-      password: this.refs.password.value
-    }
-    this.props.onSignup(newUser)
-  }
-
-  render() {
-    return (
-      <div className='container'>
-        <h1>Sign Up</h1>
-        <form className="form-horizontal" onSubmit={this._handleSignup.bind(this)}>
-          <div className="form-group">
-            <input className="form-control" type="text" placeholder="Name" ref="name" />
-          </div>
-          <div className="form-group">
-            <input className="form-control" type="email" placeholder="Email" ref="email" />
-          </div>
-          <div className="form-group">
-            <input className="form-control" type="password" placeholder="Password" ref="password" />
-          </div>
-          <div>
-            <button className="btn btn-success" type="submit">Create Account</button>
-          </div>
-        </form>
-      </div>
-    )
-  }
-}
-
-class LogIn extends Component {
-  _handleLogin(evt) {
-    evt.preventDefault()
-    const credentials = {
-      email: this.refs.email.value,
-      password: this.refs.password.value
-    }
-    this.props.onLogin(credentials)
-  }
-
-  render() {
-    return (
-      <div className='log-in'>
-        <h1>Log In</h1>
-        <form className="form-horizontal" onSubmit={this._handleLogin.bind(this)}>
-          <div className="form-group">
-            {/* <label className="col-sm-2 control-label">Email</label> */}
-            <div className="col-sm-10">
-              <input className="form-control" type="text" placeholder="Email" ref="email" id='log-in'/>
-            </div>
-          </div>
-          <div className="form-group">
-            {/* <label className="col-sm-2 control-label">Password</label> */}
-            <div className="col-sm-10">
-              <input className="form-control" type="password" placeholder="Password" ref="password" id="log-in"/>
-            </div>
-          </div>
-          <div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-success" >Log In</button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-    )
-  }
-}
-
-class Profile extends Component {
-  state = {
-    quotes: [],
-    toggleQuote: false,
-    selectedQuote:{},
-    approxAmount: ''
-  }
-
-  componentDidMount(){
-    clientAuth.getQuotes().then(res => {
-      // console.log(res.data);
-      this.setState({
-        quotes: res.data
-      })
-    })
-  }
-
-  _deleteQuote(id){
-    clientAuth.deleteQuote(id).then((res => {
-      this.setState({
-        quotes: this.state.quotes.filter((quote) => {
-          return quote._id !== id
-        })
-      })
-    }))
-  }
-
-  _showInfo(quote){
-    console.log('show something')
-    console.log(typeof quote.zestimate);
-    var num = parseInt(quote.zestimate)
-    console.log(num.toLocaleString('en'))
-    this.setState({
-      toggleQuote: !this.state.toggleQuote,
-      selectedQuote: quote,
-      approxAmount: num.toLocaleString('en')
-    })
-  }
-  _clearToggle() {
-    this.setState({
-      toggleQuote: null
-    })
-  }
-
-  _deleteUser(evt){
-    console.log(evt.target.id)
-    clientAuth.deleteUser(evt.target.id).then((res => {
-      this.setState({
-        currentUser: null,
-        view: 'home'
-        })
-      })
-    )
-  }
-
-
-  render() {
-     var amount = this.state.approxAmount
-     console.log(amount)
-    const quotes = this.state.quotes.map((quote, i) => {
-      // console.log(quote);
-      return (
-        <div key={i} >
-        <div className="quote-item" id="quote-div"  onClick={this._showInfo.bind(this, quote)}>
-          <p><span>{quote.street}, {quote.city}, {quote.state}</span></p>
-          <p><strong>{quote.useCode}</strong></p>
-          <h4>${quote.zestimate.toLocaleString('en')}</h4>
-        </div>
-        <div className="quote-item">
-          <button onClick={this._deleteQuote.bind(this, quote._id)} className="glyphicon glyphicon-trash"></button>
-        </div>
-      </div>
-      )
-    })
-    return (
-      <div className="container">
-        <div>
-          <h1 id='username'>{this.props.myUser.name}</h1>
-        </div>
-
-
-
-        <hr></hr>
-        <div>
-        <div>
-          {quotes}
-        </div>
-          {/* <button id={this.props.myUser._id} className="btn btn-success" onClick={this._deleteUser.bind(this)}>Delete Account</button> */}
-        </div>
-
-        <Modal show={!!this.state.toggleQuote} onHide={this._clearToggle.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title id="title">Property Data</Modal.Title>
-          </Modal.Header>
-            <Modal.Body>
-            <div className='listing'>
-              <p><strong>Street:</strong> {this.state.selectedQuote.street}</p>
-              <p><strong>City:</strong>: {this.state.selectedQuote.city}</p>
-              <p><strong>State:</strong> {this.state.selectedQuote.state}</p>
-              <div className="table-responsive">
-                      <div className="details"><p>{this.state.selectedQuote.sqft} Sq.ft</p></div>
-                      <div className="details"><p>{this.state.selectedQuote.beds} Beds</p></div>
-                      <div className="details"><p>{this.state.selectedQuote.baths} Baths</p></div>
-              </div>
-
-              <p><i>{this.state.selectedQuote.useCode}</i></p>
-              <h3>Home Value:</h3>
-              <h2>${amount}</h2>
-            </div>
-            </Modal.Body>
-          </Modal>
-      </div>
-
-     )
-
-  }
-
-}
 
 export default App;

@@ -8,24 +8,58 @@
   max-width: 600px;
 }
 
-/*.navbar {
-  border-radius: none;
-}*/
-
-.navbar-header button {
-  background-color: #f8f8f8;
-  border: none;
+header {
+  background: #fff;
+  color: #1c5bbf;
+  overflow: auto;
+  padding: 20px 15px;
 }
 
-.navbar-header button span {
-  font-size: 22px;
+.logo {
+  float: left;
 }
 
-#nav-link {
+.navi-link {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: bold;
+}
+
+.links {
+  float: right;
+}
+
+.navi-link, .logo {
   cursor: pointer;
-  cursor: hand;
+
 }
 
+.page {
+  min-height: 400px;
+}
+
+section {
+  height: 300px;
+  background: #fff;
+  padding: 20px 10px
+}
+#zestimate-info {
+  text-align: left;
+  padding: 25px 10px 15px 10px;
+}
+
+footer {
+  background: #03183a;
+  color: #fff;
+  height: 5%;
+  padding: 20px
+}
+
+.carousel {
+    max-width: 75%;
+    margin: 10%;
+
+}
 .log-in {
   margin-top: 100px;
   margin-left: 300px;
@@ -79,10 +113,6 @@ h4 {
   color: white;
 }
 
-.nav {
-  /*padding-left: 1003px;*/
-  float: right;
-}
 h1 {
   color: white;
 }
@@ -99,6 +129,8 @@ h1 {
 h3 {
   text-decoration: underline;
 }
+
+
 @media screen and (max-width:480px){
   * {
     margin: 0;
@@ -109,37 +141,5 @@ h3 {
     font-family: arial;
     background: url("http://www.mihomes.com/Images/mktg/promo/161114_ZoneA_Raleigh.jpg");
     background-size: auto;
-  }
-  i {
-    max-width: 100%;
-  }
-  /*Bottom menu*/
-  .app-header {
-    font-size: 3em;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-  }
-  .app-header ul li button {
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    float: left;
-    list-style: none;
-    width: 20%;
-    padding: 1.6%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.8;
-    border-bottom: 2px solid black;
-  }
-  .app-header ul li button.selected {
-    opacity: 1;
-    border-bottom: 2px solid red;
-  }
-  .app-header ul li i{
-    max-height: 1.6em;
-    padding-top: 0.15em;
-    color: white;
   }
 }

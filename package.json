@@ -4,10 +4,15 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap": "^4.0.0",
+    "hoc-react-loader": "^6.1.0",
     "jwt-decode": "^2.2.0",
-    "react": "^15.5.4",
+    "react": "^16.3.0",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4"
+    "react-bootstrap-slider": "^2.0.0",
+    "react-dom": "^16.3.0",
+    "reactstrap": "^5.0.0-beta.3",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
