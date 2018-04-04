@@ -102,6 +102,11 @@ class App extends Component {
     })
   }
 
+  _toZillow(homeView){
+    
+
+  }
+
 
 
   render() {
@@ -140,7 +145,7 @@ class App extends Component {
 
         <div className="page">
         {{
-          home: <Home />,
+          home: <Home goTo={this._toZillow}/>,
           // spinner: <LoadingSpinner />,
           login: <LogIn onLogin={this._login} />,
           signup: <SignUp onSignup={this._signUp} />,

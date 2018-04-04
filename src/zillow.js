@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import clientAuth from './clientAuth.js'
 import './zillow.css'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 // var ReactBootstrap = require('react-bootstrap')
 // var Modal = ReactBootstrap.Modal
 
@@ -87,19 +87,23 @@ class Zillow extends Component {
 
     return (
       <div>
-        <h1 id="get-info">Get Property Info</h1>
-        <form className="form-inline" onSubmit={this._newSearch.bind(this)}>
-          <div className="form-group" id="address">
-            <label>Enter Address</label>
-            <input className="form-control" type='text' placeholder='Street Address' ref='address' id="zillow" />
-          </div>
-          <div className="form-group" id="citystatezip">
-            <label>Enter City/State or Zip code</label>
-            <input className="form-control" type='text' placeholder='Ex... New York, NY or 11101' ref='citystatezip' id="zillow" />
-          </div>
+        <div id="estimate-form">
+          <h1 id="get-info">How Much Is My Home Worth?</h1>
+          <p>Get an instant home-value estimate, and save zestimates to your profile.</p>
+          <hr></hr>
+          <Form className="" onSubmit={this._newSearch.bind(this)}>
+            <FormGroup className="">
+              {/* <Label for="zillowAddress">Enter Address</Label> */}
+              <Input className="" type='text' placeholder='Enter Street Address' ref='address' id="zillowAddress" />
+            </FormGroup>
+            <FormGroup>
+              {/* <Label for="zillowCityState">Enter City/State or Zip code</Label> */}
+              <Input className="" type='text' placeholder='Ex... New York, NY or 11101' ref='citystatezip' id="zillowCityState" />
+            </FormGroup>
 
-          <Button color="warning" className="btn">Search</Button>
-        </form>
+            <Button color="warning" className="btn">Search</Button>
+          </Form>
+        </div>
 
         {listing
           ? (

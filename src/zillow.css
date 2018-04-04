@@ -1,9 +1,25 @@
-.form-inline {
-  margin-top: 175px;
+#estimate-form {
+  background: rgba(0,0,0, 0.7);
+  width: 40%;
+  margin: 50px auto;
+  padding: 20px;
 }
 
-#address, #citystatezip {
-  margin:10px;
+#estimate-form h1, #estimate-form p {
+  color: #d6d8db;
+}
+
+hr {
+  background: #d6d8db;
+  width: 75%;
+}
+
+form {
+  padding: 20px;
+}
+
+form .form-control {
+  border: 1px solid black;
 }
 
 label {
@@ -11,9 +27,7 @@ label {
   color: white
 }
 
-#zillow {
-  width: 300px;
-}
+
 .listing {
   text-align: center
 }
@@ -21,7 +35,7 @@ label {
 .amount {
   background: lightblue;
   width: 200px;
-  margin-left: 182px;
+  margin: auto;
 }
 
 .details {

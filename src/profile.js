@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import clientAuth from './clientAuth';
 // var ReactBootstrap = require('react-bootstrap')
 // var Modal = ReactBootstrap.Modal
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  Container, Row, Col, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 class Profile extends Component {
   state = {
@@ -66,16 +66,19 @@ class Profile extends Component {
     const quotes = this.state.quotes.map((quote, i) => {
       // console.log(quote);
       return (
-        <div key={i} >
-        <div className="quote-item" id="quote-div"  onClick={this._showInfo.bind(this, quote)}>
-          <p><span>{quote.street}, {quote.city}, {quote.state}</span></p>
-          <p><strong>{quote.useCode}</strong></p>
-          <h4>${quote.zestimate.toLocaleString('en')}</h4>
-        </div>
-        <div className="quote-item">
-          <button onClick={this._deleteQuote.bind(this, quote._id)} className="glyphicon glyphicon-trash"></button>
-        </div>
-      </div>
+
+            <Col xs="6" sm="4" key={i}>
+              <div>
+              <div key={i} className="quote-item" id="quote-div"  onClick={this._showInfo.bind(this, quote)}>
+                <p><span>{quote.street}, {quote.city}, {quote.state}</span></p>
+                <p><strong>{quote.useCode}</strong></p>
+                <h4>${quote.zestimate.toLocaleString('en')}</h4>
+                <div className="quote-item">
+                  <button onClick={this._deleteQuote.bind(this, quote._id)} className=""><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </Col>
       )
     })
     return (
@@ -87,18 +90,18 @@ class Profile extends Component {
 
 
         <hr></hr>
-        <div>
-        <div>
-          {quotes}
-        </div>
-          {/* <button id={this.props.myUser._id} className="btn btn-success" onClick={this._deleteUser.bind(this)}>Delete Account</button> */}
-        </div>
+        <Container>
+          <Row id="quote-row">
+                {quotes}
+            </Row>
+          </Container>
+
 
         <Modal show={!!this.state.toggleQuote} onHide={this._clearToggle.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title id="title">Property Data</Modal.Title>
-          </Modal.Header>
-            <Modal.Body>
+          <ModalHeader id="title" closeButton>
+            Property Data
+          </ModalHeader>
+            <ModalBody>
             <div className='listing'>
               <p><strong>Street:</strong> {this.state.selectedQuote.street}</p>
               <p><strong>City:</strong>: {this.state.selectedQuote.city}</p>
@@ -113,7 +116,7 @@ class Profile extends Component {
               <h3>Home Value:</h3>
               <h2>${amount}</h2>
             </div>
-            </Modal.Body>
+            </ModalBody>
           </Modal>
       </div>
 

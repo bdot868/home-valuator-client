@@ -17,6 +17,8 @@ header {
 
 .logo {
   float: left;
+  font-weight: 700;
+  font-size: 24px
 }
 
 .navi-link {
@@ -27,6 +29,7 @@ header {
 
 .links {
   float: right;
+  margin-bottom: 10px;
 }
 
 .navi-link, .logo {
@@ -89,20 +92,26 @@ body {
   background: url("https://cdn.tollbrothers.com/models/santa_monica_10150_/elevations/27-Marbella-Santa-Monica_Front-Elevation_920.jpg");
   background-size: cover;
 }
+
+hr {
+  background-color: #fff
+}
+
 #quote-div {
     background: white;
     border-radius: 5px;
-    height: 100px;
-    width: 452px;
-    padding: 10px;
+    padding: 20px;
     margin-left: 75px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     margin-right: 10px;
-    cursor: pointer;
-    cursor: hand;
+    cursor: zoom-in;
+    box-shadow: 0 10px 6px -6px #212529;
+}
+
+#quote-div button i {
+  cursor: pointer;
 }
 span {
-  text-decoration: underline;
   font-size: 16px;
 }
 
@@ -119,12 +128,10 @@ h1 {
 #buster {
   height: 0px;
 }
-#tagname{
-  margin-top: 200px;
-}
-.quote-item {
+
+/* .quote-item {
   display: inline-block;
-}
+} */
 
 h3 {
   text-decoration: underline;
